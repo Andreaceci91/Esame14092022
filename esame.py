@@ -1,6 +1,6 @@
-# Andrea Ceci
-# Laboratorio di Programmazione
-# Appello Esame 14/09/2022
+# Andrea Ceci 
+# MAT. SM3201219
+# Laboratorio di Programmazione - Appello Esame 14/09/2022
 
 
 # Create the class ExamExeption
@@ -155,7 +155,7 @@ def compute_daily_max_difference(time_series):
 #  Corpo del programma
 #==============================
 
-time_series_file = CSVTimeSeriesFile(name='/Users/andrea/Desktop/Esame14092022/data_2.csv')
+time_series_file = CSVTimeSeriesFile(name='/Users/andrea/Desktop/Esame14092022/data.csv')
 
 # Use function Getdata and save value in Time_series
 time_series = time_series_file.get_data()
