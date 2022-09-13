@@ -154,13 +154,13 @@ def compute_daily_max_difference(time_series):
 #  Corpo del programma
 #==============================
 
-time_series_file = CSVTimeSeriesFile(name='data.csv')
+#time_series_file = CSVTimeSeriesFile(name='data.csv')
 
 # Use function Getdata and save value in Time_series
-time_series = time_series_file.get_data()
+#time_series = time_series_file.get_data()
 
 # Invoce function below to calculate max daily excursion
-results = compute_daily_max_difference(time_series)
+#results = compute_daily_max_difference(time_series)
 
 
 #print('\n***  Lista  ***')
