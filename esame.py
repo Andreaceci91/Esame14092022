@@ -3,7 +3,7 @@
 # Laboratorio di Programmazione - Appello Esame 14/09/2022
 
 
-# Create the class ExamExeption
+# Create Class ExamExeption
 class ExamException(Exception):
     pass
 
@@ -17,7 +17,7 @@ class CSVTimeSeriesFile:
     # Create function get_data
     def get_data(self):  
 
-        # Try to open the file
+        # Try to open file
         try:
             file = open(self.name, 'r')
             file.readline()
@@ -27,18 +27,18 @@ class CSVTimeSeriesFile:
         except:
             raise ExamException('Impossibile aprire il file')
 
-                #Create a empty list
+        #Create a empty list
         data_temp = []
         data = []
 
         for line in file:               
-            # Split the element on "," that separates the value
+            # Split the element on ',' that separates the values
             elements = line.split(',')
                 
             # Remove the newline character and black space
             elements[-1] = elements[-1].strip()
                 
-            #If the element in first position is different by epoch i will add it at the list
+            #If the element in first position is different by 'epoch' i will add it at the list
             if elements[0] != 'epoch':
                     
                 data_temp.append(elements)
@@ -71,7 +71,7 @@ class CSVTimeSeriesFile:
             if data[i][0] >= data[i+1][0]:
                 raise ExamException('Epoch non ordinati correttamente o duplicati')
 
-        # If all check are ok, return data
+        # If all checks passed return data
         return(data)
 
 
@@ -82,7 +82,7 @@ def compute_daily_max_difference(time_series):
     values = []
     length = len(time_series)
 
-    # Check if legth of list have only 1 element
+    # Check if list has only 1 element
     if length == 1:
         values.append(None)
 
@@ -91,16 +91,15 @@ def compute_daily_max_difference(time_series):
         after = 0
         
         i = 0
-        #j = 0
 
         while i < length:
 
-            # Use a variable to check if there are a single measure
+            # Use variable to check if there are single measure
             single = False
             
             temp = 0
 
-            # Calculate the value before if the index is different by 0
+            # Calculate the previous value if the index is different from 0
             if i != 0:
                 prev = (time_series[i-1][0] - (time_series[i-1][0] % 86400))
 
@@ -111,7 +110,7 @@ def compute_daily_max_difference(time_series):
             if i != length-1:
                 after = (time_series[i+1][0] - (time_series[i+1][0] % 86400))
             
-            # Check "Single" at the beginning of list
+            # Check 'Single' at the beginning of list
             if curr != after and i == 0:
                 temp = None
                 single = True
@@ -120,25 +119,25 @@ def compute_daily_max_difference(time_series):
                 temp = None
                 single = True
             
-            # Check "Single" at the end of list
+            # Check 'Single' at the end of list
             if prev != curr and i == length-1:
                 temp = None
                 single = True
 
-            # If i have not found "Single" element in list
+            # If I have not found 'Single' element in list
             if single == False:
                 j = i
 
-                # Empty list I add Temp of same day
+                # Empty list where add Temp of same day
                 list_calc = []
 
                 while (j < length and ((time_series[j][0] - (time_series[j][0] % 86400)) == curr)):
                     
-                    # Add at temporany list al values of the same day
+                    # Add at temporany list all values of the same day
                     list_calc.append(time_series[j][1])
                     j+=1
                 
-                # Calculate maximum daily excursion subtract at the "max value of temp" the "min value of temp"
+                # Calculate maximum daily excursion subtract at the 'max value of temp' the 'min value of temp'
                 temp = max(list_calc) - min(list_calc)
 
                 i = j-1
@@ -155,7 +154,7 @@ def compute_daily_max_difference(time_series):
 #  Corpo del programma
 #==============================
 
-time_series_file = CSVTimeSeriesFile(name='/Users/andrea/Desktop/Esame14092022/data.csv')
+time_series_file = CSVTimeSeriesFile(name='data.csv')
 
 # Use function Getdata and save value in Time_series
 time_series = time_series_file.get_data()
@@ -163,8 +162,9 @@ time_series = time_series_file.get_data()
 # Invoce function below to calculate max daily excursion
 results = compute_daily_max_difference(time_series)
 
-print("\n***  Lista  ***")
-for item in results:
-    print(item)
 
-print("Cambiamenti rievati:",len(results))
+#print('\n***  Lista  ***')
+#for item in results:
+#    print(item)
+
+#print('N Risultati:',len(results))
